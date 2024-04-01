@@ -1,0 +1,35 @@
+Style columns
+[data-testid="column"] {
+    box-shadow: rgb(0 0 0 / 20%) 0px 2px 1px -1px, rgb(0 0 0 / 14%) 0px 1px 1px 0px, rgb(0 0 0 / 12%) 0px 1px 3px 0px;
+    border-radius: 15px;
+    padding: 5% 5% 5% 10%;
+} 
+
+/* Style containers */
+[data-testid="stVerticalBlock"] > [style*="flex-direction: column;"] > [data-testid="stVerticalBlock"] {
+    border: 20px groove red;
+}
+
+
+/* Custom CSS styles */
+.item-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.item {
+    /* background-color: #f4f4f4; */
+    padding: 10px;
+    margin-bottom: 5px;
+    display: flex;
+    justify-content: space-between;
+    border-bottom:0.01rem solid;
+    /* border-style: solid; */
+    border-color: aliceblue;
+
+    /* color: black; */
+}
+
+.file-name {
+    margin-right: 10px;
+}
