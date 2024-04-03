@@ -2,15 +2,21 @@ import streamlit as st
 import requests
 from tqdm import tqdm
 import json
+import os
 
 from utils.download import *
 from utils.fileData import * 
 
-
-with open('/Users/sanduninduwara/Desktop/Sem 8/Distributed/project/stremlit/pages/styles.css') as f:
+# Get the base directory of the project
+base_dir = os.path.dirname(os.path.abspath(__file__))
+css_file_path = os.path.join(base_dir, "styles.css")
+# Open the CSS file
+with open(css_file_path) as f:
     css = f.read()
-
 st.markdown(f'<style>{css}</style>', unsafe_allow_html=True)
+
+
+st.title("Find Your File")
 
 all_files=getAllFileData()
 
@@ -31,10 +37,12 @@ with st.form('chat_input_form'):
         else:
             all_files=getAllFileData()
 
-
+vert_space = '<div style="padding: 10px 5px;"></div>'
+st.markdown(vert_space, unsafe_allow_html=True)
 
 with st.container():
         for key,val in all_files.items():
+
             c1, c2 = st.columns([5,1]) 
             with c1:
                 st.markdown(f'<div class="item"><div class="file-name">File name: {val}</div></div>', unsafe_allow_html=True)
@@ -46,11 +54,7 @@ with st.container():
                 st.write(f"You clicked download for file {key}")
                 merkel_tree,chunk_map=getFileBlockData(key)
                 download_file_with_progress("downloaded_file.zip", "1", chunk_map)
-
-
-
-# col1, col2, col3 = st.columns(3)
-# col1.write('cool column box 1')
-# col2.write('cool column box 2')
-# col3.write('cool column box 3')
+                # Todo: combine all chuncks hashes and re create the merkel tree
+                # Todo: if the root hashesh of both merkel trees are similar create the file from chunck
+                #       else compair and find the corrupted chunch
 

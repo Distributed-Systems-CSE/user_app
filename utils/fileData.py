@@ -21,6 +21,11 @@ def getSearchFile(file_name):
 
 def getFileBlockData(file_id):
 
+    # blockData={
+    #     merkel_tree:"",
+    #     chunck_map:""
+    # }
+
     merkel_tree=""
 
     x = '{ "1":"5000", "2":"5001", "3":"5002"}'
