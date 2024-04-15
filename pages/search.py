@@ -45,15 +45,14 @@ with st.container():
 
             c1, c2 = st.columns([5,1]) 
             with c1:
-                st.markdown(f'<div class="item"><div class="file-name">File name: {val}</div></div>', unsafe_allow_html=True)
+                st.markdown(f'<div class="item"><div class="file-name">File name: {key}</div></div>', unsafe_allow_html=True)
             # Use the second column for the submit button
             with c2:
                 down_submitted = st.button(label="Download", key=f"button_{key}" )
 
             if down_submitted:
                 st.write(f"You clicked download for file {key}")
-                merkel_tree,chunk_map=getFileBlockData(key)
-                download_file_with_progress("downloaded_file.zip", "1", chunk_map)
+                download_file_with_progress(key, val.get('chunks-info'))
                 # Todo: combine all chuncks hashes and re create the merkel tree
                 # Todo: if the root hashesh of both merkel trees are similar create the file from chunck
                 #       else compair and find the corrupted chunch

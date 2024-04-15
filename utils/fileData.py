@@ -1,13 +1,16 @@
 import json
+import requests
 
 def getAllFileData():
     # id:file_name type dic
-    all_data={
-        1:"file name 1",
-        2:"file name 2",
-        3:"file name 3",
-        4:"file name 4",
-    }
+    url = "http://127.0.0.1:5001/getChain"
+    response = requests.get(url)
+    data = response.json()
+
+    all_data= {}
+    for item in data['chain']:
+        if item.get('data') != "Genesis Block":
+            all_data[item.get('data').get('filename')] = item.get('data')
     return all_data
 
 def getSearchFile(file_name):
