@@ -4,17 +4,17 @@ import os
 
 def upload_file_to_server(file, upload_url):
     # Send a POST request to the server to upload the file
-    with open(os.path.join("temp", file.name), 'wb') as f:
+    with open(os.path.join("downloads", file.name), 'wb') as f:
         f.write(file.getbuffer())
 
-    with open(os.path.join("temp", file.name), 'rb') as f:
+    with open(os.path.join("downloads", file.name), 'rb') as f:
         files = {'file': f}
         response = requests.post(upload_url, files=files)
         if response.status_code == 200:
             st.success("File uploaded successfully")
         else:
             st.error(f"Failed to upload file. Status code: {response.status_code}")
-    os.remove(os.path.join("temp", file.name))
+    os.remove(os.path.join("downloads", file.name))
 
 
 st.title("File Uploader")
