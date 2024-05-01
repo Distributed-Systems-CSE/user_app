@@ -52,8 +52,5 @@ with st.container():
 
             if down_submitted:
                 st.write(f"You clicked download for file {key}")
-                download_file_with_progress(key, val.get('chunks-info'))
-                # Todo: combine all chuncks hashes and re create the merkel tree
-                # Todo: if the root hashesh of both merkel trees are similar create the file from chunck
-                #       else compair and find the corrupted chunch
+                download_file_with_progress(key, val)
 
