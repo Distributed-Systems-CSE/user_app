@@ -17,7 +17,7 @@ def download_file_with_progress(file_name, file_info):
 
     byte_stream = b""
     for ch in chunk_map:
-        url = f"http://{ch['node']}:5001/getChunk?hash={ch['hash']}"
+        url = f"http://localhost:{ch['port']}/getChunk?hash={ch['hash']}"
 
         current_chunk += 1
         progress_text = f"Operation in progress. {current_chunk}/{total_chunks_count}"
